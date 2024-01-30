@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMove : MonoBehaviour
 {   //declare variables to use later
@@ -30,7 +31,12 @@ public class PlayerMove : MonoBehaviour
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
     }
-    private void FixedUpdate()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Speed Boost!!ed into a wall, ouch!");
+    }
+
+        private void FixedUpdate()
     {
         //creates physics for yoshi to move
         rigidbody.AddForce(direction * force * Time.deltaTime);
